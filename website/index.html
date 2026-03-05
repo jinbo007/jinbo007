@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason | Digital Identity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #141416;
+            --bg-hover: #1a1a1d;
+            --text: #e4e4e7;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --accent: #10b981;
+            --accent-secondary: #06b6d4;
+            --gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* Minimal Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 2rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .greeting {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Section */
+        section {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Communication Style */
+        .style-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .style-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .style-item:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+        }
+
+        .style-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .style-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Interests */
+        .interests {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .interest {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .interest:hover {
+            border-color: var(--accent-secondary);
+        }
+
+        .interest-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .interest-name {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .interest-level {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 0.25rem;
+        }
+
+        /* Quotes */
+        .quotes {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .quote {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent);
+        }
+
+        .quote:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Tech Radar */
+        .radar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .radar-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radar-item.learning {
+            border-color: var(--accent);
+        }
+
+        .radar-item.using {
+            border-color: var(--accent-secondary);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateX(-3px);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content {
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .interests {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Jason</div>
+        <div class="status">
+            <span class="status-dot"></span>
+            在线 · 深圳
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="greeting">// Hello World</p>
+        <h1>一个对 AI 和效率<br>有执念的人</h1>
+        <p class="intro">
+            不喜欢废话，喜欢直接问核心问题。关注工具的实用性和可扩展性。
+            相信 AI 应该让生活更简单，而不是更复杂。
+        </p>
+        <div class="tags">
+            <span class="tag">🤖 AI 实用主义者</span>
+            <span class="tag">⚡ 效率至上</span>
+            <span class="tag">🔧 架构思维</span>
+            <span class="tag">🧪 持续实验</span>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">沟通风格</p>
+        <h2>日常表达习惯</h2>
+        <div class="style-grid">
+            <div class="style-item">
+                <h3 class="style-title">💬 直接了当</h3>
+                <p class="style-desc">不喜欢客套话，直奔主题。问问题精准，不喜欢绕弯子。</p>
+            </div>
+            <div class="style-item">
+                <h3 class="style-title">🎯 目标导向</h3>
+                <p class="style-desc">每个对话都有目的，要么解决问题，要么学到新东西。</p>
+            </div>
+            <div class="style-item">
+                <h3 class="style-title">📊 喜欢对比</h3>
+                <p class="style-desc">做决策前习惯对比多个方案（Dify vs n8n，Claude Code vs Cursor）</p>
+            </div>
+            <div class="style-item">
+                <h3 class="style-title">🚀 行动派</h3>
+                <p class="style-desc">说到做到，想要什么就直接开始做。比如："给我做一个个人网站"</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">兴趣领域</p>
+        <h2>什么让我兴奋</h2>
+        <div class="interests">
+            <div class="interest">
+                <div class="interest-icon">🤖</div>
+                <div class="interest-name">AI Agent 架构</div>
+                <div class="interest-level">深度研究</div>
+            </div>
+            <div class="interest">
+                <div class="interest-icon">🧩</div>
+                <div class="interest-name">Skills & Tools</div>
+                <div class="interest-level">日常使用</div>
+            </div>
+            <div class="interest">
+                <div class="interest-icon">🔄</div>
+                <div class="interest-name">自动化工作流</div>
+                <div class="interest-level">持续优化</div>
+            </div>
+            <div class="interest">
+                <div class="interest-icon">🌐</div>
+                <div class="interest-name">多平台集成</div>
+                <div class="interest-level">正在探索</div>
+            </div>
+            <div class="interest">
+                <div class="interest-icon">📡</div>
+                <div class="interest-name">渐进式披露</div>
+                <div class="interest-level">新兴趣</div>
+            </div>
+            <div class="interest">
+                <div class="interest-icon">🛡️</div>
+                <div class="interest-name">容错与持久化</div>
+                <div class="interest-level">架构设计</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">经典语录</p>
+        <h2>我说过的话</h2>
+        <div class="quotes">
+            <p class="quote">"怎么打造一个永不停止的 Agent？"</p>
+            <p class="quote">"你可以操作 traeApp 进行开发吗？"</p>
+            <p class="quote">"在不？"（简洁的问候）</p>
+            <p class="quote">"深圳最近一周天气"</p>
+            <p class="quote">"GitHub 上最近比较火的 AI 应用有哪些？"</p>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">技术雷达</p>
+        <h2>正在关注和使用</h2>
+        <div class="radar">
+            <div class="radar-item using">🦞 OpenClaw</div>
+            <div class="radar-item using">🧠 Claude Code</div>
+            <div class="radar-item using">🌊 Cursor</div>
+            <div class="radar-item learning">🔄 Dify</div>
+            <div class="radar-item learning">⚡ n8n</div>
+            <div class="radar-item learning">🦀 Rust</div>
+            <div class="radar-item using">🐍 Python</div>
+            <div class="radar-item using">📘 TypeScript</div>
+            <div class="radar-item learning">🎯 Vibe Coding</div>
+            <div class="radar-item learning">📊 渐进式披露</div>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">最近动态</p>
+        <h2>时间线</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2026.03.04</div>
+                <div class="timeline-content">创建个人网站，探索渐进式披露概念</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2026.03.04</div>
+                <div class="timeline-content">完成 OpenClaw 完整迁移方案（打包所有配置和 Skills）</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2026.03.04</div>
+                <div class="timeline-content">部署 Gateway Watchdog，实现自动监控和重启</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2026.03.04</div>
+                <div class="timeline-content">研究 Vibe Coding 新动向（Claude Code、Cursor、Windsurf）</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <p class="section-label">偏好</p>
+        <h2>工作习惯</h2>
+        <div class="style-grid">
+            <div class="style-item">
+                <h3 class="style-title">🌙 工作时间</h3>
+                <p class="style-desc">09:00 - 23:00（活跃），深夜只响应紧急事件</p>
+            </div>
+            <div class="style-item">
+                <h3 class="style-title">📍 位置</h3>
+                <p class="style-desc">深圳 · 中国 · 时区: Asia/Shanghai</p>
+            </div>
+            <div class="style-item">
+                <h3 class="style-title">💬 首选渠道</h3>
+                <p class="style-desc">Discord（主要）· WhatsApp（备用）</p>
+            </div>
+            <div class="style-item">
+                <h3 class="style-title">🎯 关注重点</h3>
+                <p class="style-desc">实用性 > 酷炫 · 稳定性 > 新功能 · 可扩展 > 简单</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>由 AI 生成 · 基于 Jason 的真实对话数据</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">2026.03.04 · Powered by OpenClaw</p>
+    </footer>
+</body>
+</html>

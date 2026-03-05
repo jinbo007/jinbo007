@@ -1,0 +1,35 @@
+# 敏感信息 - 不要上传
+*.key
+*.pem
+.env
+.env.local
+.env.*.local
+
+# OpenClaw 敏感配置
+.openclaw/.env
+.openclaw/secrets.json
+.openclaw/tokens.json
+
+# 敏感数据
+passwords/
+secrets/
+private/
+
+# 临时文件
+*.tmp
+*.log
+.DS_Store
+
+# Node modules
+node_modules/
+
+# 技能缓存
+skills/.cache/
+skills/**/node_modules/
+
+# 媒体文件（太大）
+media/
+*.mp4
+*.mov
+*.avi
+*.mkv

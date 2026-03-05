@@ -1,0 +1,77 @@
+# 🔥 技术日报 - 2026年03月04日
+
+**生成时间:** 2026-03-04 23:44:10
+
+---
+
+## 🌊 Vibe Coding
+
+### 1. [Manifesto-Engine](https://github.com/Manifesto-Engine/Manifesto-Engine)
+
+**描述:** Manifesto Engine: Because your codebase needs a backbone, not just a README.  We
+
+**Stars:** ⭐ 0 | **语言:** HTML | **更新:** 2026-03-04
+
+---
+
+### 2. [aidevops](https://github.com/marcusquinn/aidevops)
+
+**描述:** Vibe-Coding is easy. DevOps is hard. AI DevOps automates your software, business
+
+**Stars:** ⭐ 37 | **语言:** Shell | **更新:** 2026-03-04
+
+---
+
+### 3. [K12EducationPortal](https://github.com/VeryUbuntu/K12EducationPortal)
+
+**描述:** Vibe coding 出来的一个面向国内中小学生的学习站点，聚合了全球优质的开源教育工具与可视化资源，涵盖从小学到高中的全学科内容，帮助学生通过互动与仿真直观
+
+**Stars:** ⭐ 0 | **语言:** TypeScript | **更新:** 2026-03-04
+
+---
+
+### 4. [vibe-coding-landing](https://github.com/xbaranova-neiro/vibe-coding-landing)
+
+**描述:** 无描述
+
+**Stars:** ⭐ 0 | **语言:** HTML | **更新:** 2026-03-04
+
+---
+
+### 5. [agent-of-empires](https://github.com/njbrake/agent-of-empires)
+
+**描述:** Claude Code, OpenCode, Mistral Vibe, Codex CLI, Gemini CLI Coding Agent Terminal
+
+**Stars:** ⭐ 964 | **语言:** Rust | **更新:** 2026-03-04
+
+---
+
+## ☁️ Cloudflare
+
+### 1. [agents-kanban](https://github.com/abuiles/agents-kanban)
+
+**描述:** AgentsKanban is a Cloudflare Workers application for multi-repo task orchestrati
+
+**Stars:** ⭐ 4 | **语言:** TypeScript | **更新:** 2026-03-04
+
+---
+
+### 2. [Bit-of-Business-OS](https://github.com/danieltulus/Bit-of-Business-OS)
+
+**描述:** 🚀 Deploy and manage SaaS apps worldwide with a Cloudflare Worker template featur
+
+**Stars:** ⭐ 0 | **语言:** HTML | **更新:** 2026-03-04
+
+---
+
+### 3. [hookforms-cloud](https://github.com/Cinarr10/hookforms-cloud)
+
+**描述:** 📥 Deploy a webhook inbox on Cloudflare Workers to route form submissions to Disc
+
+**Stars:** ⭐ 1 | **语言:** TypeScript | **更新:** 2026-03-04
+
+---
+
+### 4. [paper-bot](https://github.com/athree-oss/paper-bot)
+
+**描述:** A Telegram bot that
