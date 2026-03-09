@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinbo's AI Journey | 信息 → 决策 → 执行</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #141416;
+            --bg-hover: #1a1a1d;
+            --text: #e4e4e7;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --accent: #10b981;
+            --accent-secondary: #06b6d4;
+            --gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        /* AI Philosophy Section */
+        .philosophy {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .philosophy h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .philosophy h2::before {
+            content: '🤖';
+            font-size: 2rem;
+        }
+
+        .philosophy-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .philosophy-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .philosophy-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .philosophy-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--text-muted);
+        }
+
+        /* Timeline Section */
+        .timeline {
+            margin-top: 3rem;
+        }
+
+        .timeline h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline h2::before {
+            content: '📅';
+            font-size: 2rem;
+        }
+
+        .timeline-container {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(0.5rem);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .timeline-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .timeline-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .timeline-tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            color: var(--accent-secondary);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal-body {
+            margin-top: 2rem;
+        }
+
+        .modal-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .modal-body ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .philosophy-diagram {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>信息 → 决策 → 执行</h1>
+            <p class="subtitle">构建 AI 世界的核心循环</p>
+            <div class="tags">
+                <span class="tag">🤖 AI Explorer</span>
+                <span class="tag">🦞 养龙虾 OpenClaw</span>
+                <span class="tag">📊 Long-term Investor</span>
+            </div>
+        </header>
+
+        <!-- AI Philosophy -->
+        <section class="philosophy">
+            <h2>AI 哲学</h2>
+            <div class="philosophy-diagram">
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">📊</div>
+                    <div class="philosophy-label">信息</div>
+                    <div class="philosophy-desc">数据、上下文、知识</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">🧠</div>
+                    <div class="philosophy-label">决策</div>
+                    <div class="philosophy-desc">推理、规划、选择</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">⚡</div>
+                    <div class="philosophy-label">执行</div>
+                    <div class="philosophy-desc">行动、工具、结果</div>
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">
+                OpenClaw 是这个理念的最佳实践：信息（多渠道接入）→ 决策（技能+工具）→ 执行（自动化一切）
+            </p>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="days-count">0</div>
+                <div class="stat-label">记录天数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="topics-count">0</div>
+                <div class="stat-label">讨论主题</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="insights-count">0</div>
+                <div class="stat-label">核心洞察</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">∞</div>
+                <div class="stat-label">AI 进化中</div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="timeline">
+            <h2>每日记录</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div id="timeline-items">
+                    <!-- 动态加载 -->
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://github.com/jinbo007" target="_blank">GitHub</a>
+                <a href="https://github.com/openclaw/openclaw" target="_blank">OpenClaw</a>
+                <a href="mailto:jinbo007@users.noreply.github.com">Email</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                Powered by OpenClaw AI Assistant | 自动记录 · 自动总结 · 自动部署
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="detail-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- 动态加载内容 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 时间线数据
+        const timelineData = [
+            {
+                date: '2026-03-09',
+                title: 'AI 世界构建 · 技能部署 · 个人主页升级',
+                excerpt: '生成 AI 哲学方案、部署常用技能、升级 GitHub Pages 个人主页，讨论每日总结自动部署方案',
+                tags: ['AI哲学', '技能部署', '个人主页', '自动化'],
+                insights: ['信息-决策-执行是构建AI世界的核心循环', 'OpenClaw技能市场提供强大扩展能力', '自动化部署是效率的关键'],
+                details: `
+                    <h3>🤖 AI 世界构建</h3>
+                    <p>深入讨论了"信息 → 决策 → 执行"的 AI 哲学框架，这是构建 AI 世界的核心循环。</p>
+
+                    <h3>📦 技能部署</h3>
+                    <p>安装了常用系统软件和 Python 包：</p>
+                    <ul>
+                        <li>pandoc - 文档转换工具</li>
+                        <li>imagemagick - 图像处理工具</li>
+                        <li>matplotlib, seaborn, plotly - 数据可视化</li>
+                    </ul>
+
+                    <h3>🌐 个人主页升级</h3>
+                    <p>创建了包含 AI 哲学的 GitHub 个人主页，展示了 OpenClaw 的核心理念。</p>
+
+                    <h3>💡 每日总结自动部署</h3>
+                    <p>设计了自动化部署方案：每天自动总结聊天内容并部署到个人网页。</p>
+                `
+            },
+            {
+                date: '2026-03-06',
+                title: '腾讯财报深度分析 · 阿里对比 · OpenClaw场景',
+                excerpt: '完成腾讯2025年财报5轮迭代分析、阿里巴巴对比分析、OpenClaw十大实用场景分析',
+                tags: ['腾讯', '财报分析', '阿里巴巴', 'OpenClaw'],
+                insights: ['腾讯护城河极强，社交生态无敌', '阿里估值便宜但竞争激烈', 'OpenClaw是真正的AI助手'],
+                details: `
+                    <h3>📊 腾讯2025年财报分析（5轮迭代）</h3>
+                    <p>完成了深度财报分析：</p>
+                    <ul>
+                        <li>收入：7,200-7,300亿，增长8%</li>
+                        <li>利润：2,100-2,200亿，净利率30%</li>
+                        <li>游戏：王者荣耀+和平精英现金牛</li>
+                        <li>广告：视频号增长强劲</li>
+                        <li>金融科技：微信支付稳健</li>
+                    </ul>
+
+                    <h3>🆚 腾讯 vs 阿里巴巴对比</h3>
+                    <p><strong>腾讯</strong>：护城河⭐⭐⭐⭐⭐，年化收益10-15%</p>
+                    <p><strong>阿里</strong>：估值便宜（P/E 12倍），但竞争激烈，年化收益8-12%</p>
+
+                    <h3>🤖 OpenClaw 十大实用场景</h3>
+                    <ol>
+                        <li>🥇 投资分析与决策支持</li>
+                        <li>🥈 个人知识管理</li>
+                        <li>🥉 多平台消息管理</li>
+                        <li>浏览器自动化</li>
+                        <li>代码开发与调试</li>
+                    </ol>
+                `
+            },
+            {
+                date: '2026-03-05',
+                title: '投资规划 · 资产配置优化',
+                excerpt: '明确10-30年投资目标，制定每月定投计划，设定腾讯/茅台条件触发策略',
+                tags: ['投资', '资产配置', '腾讯', '茅台', 'ETF'],
+                insights: ['降低单一股票风险，增加ETF配置', '建立稳定现金流体系', '全球资产配置'],
+                details: `
+                    <h3>🎯 投资目标</h3>
+                    <p><strong>长期目标</strong>：退休或10年后不再工作时，提供稳定现金流</p>
+                    <p><strong>投资周期</strong>：10-30年</p>
+
+                    <h3>📊 当前持仓</h3>
+                    <ul>
+                        <li>腾讯：30%，成本577港元</li>
+                        <li>茅台：20%</li>
+                        <li>美股ETF：20-30%</li>
+                        <li>加密货币：10-15%</li>
+                        <li>现金：30%</li>
+                    </ul>
+
+                    <h3>💡 优化方案</h3>
+                    <ul>
+                        <li>腾讯减持至20-25%</li>
+                        <li>美股ETF增至35-40%</li>
+                        <li>新增沪深300/中证500配置</li>
+                    </ul>
+
+                    <h3>📅 每月定投计划（3.5万）</h3>
+                    <ul>
+                        <li>纳指ETF（159696）：1.5万</li>
+                        <li>标普ETF（513500）：1万</li>
+                        <li>沪深300（510300）：0.5万</li>
+                        <li>现金储备：0.5万</li>
+                    </ul>
+                `
+            }
+        ];
+
+        // 渲染时间线
+        function renderTimeline() {
+            const container = document.getElementById('timeline-items');
+            container.innerHTML = timelineData.map((item, index) => `
+                <div class="timeline-item" onclick="openModal(${index})">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">${item.date}</div>
+                    <div class="timeline-title">${item.title}</div>
+                    <div class="timeline-excerpt">${item.excerpt}</div>
+                    <div class="timeline-tags">
+                        ${item.tags.map(tag => `<span class="timeline-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // 更新统计
+            document.getElementById('days-count').textContent = timelineData.length;
+            document.getElementById('topics-count').textContent =
+                [...new Set(timelineData.flatMap(item => item.tags))].length;
+            document.getElementById('insights-count').textContent =
+                timelineData.reduce((sum, item) => sum + item.insights.length, 0);
+        }
+
+        // 打开模态框
+        function openModal(index) {
+            const item = timelineData[index];
+            const modal = document.getElementById('detail-modal');
+            const modalBody = document.getElementById('modal-body');
+
+            modalBody.innerHTML = `
+                <h2 style="margin-bottom: 0.5rem;">${item.title}</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">${item.date}</p>
+                ${item.details}
+                <h3 style="margin-top: 2rem;">💡 核心洞察</h3>
+                <ul>
+                    ${item.insights.map(insight => `<li>${insight}</li>`).join('')}
+                </ul>
+            `;
+
+            modal.classList.add('active');
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('detail-modal').classList.remove('active');
+        }
+
+        // 点击模态框外部关闭
+        document.getElementById('detail-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ESC 键关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // 初始化
+        renderTimeline();
+    </script>
+</body>
+</html>
