@@ -166,6 +166,19 @@
             color: var(--text-muted);
             margin-bottom: 2rem;
             max-width: 600px;
+            position: relative;
+        }
+
+        .intro::after {
+            content: '|';
+            position: absolute;
+            color: var(--neon-cyan);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .tags {
