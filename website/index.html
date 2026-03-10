@@ -533,6 +533,38 @@
             font-size: 0.95rem;
         }
 
+        /* Web3 钱包连接 */
+        .wallet-section {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+        }
+
+        .wallet-btn {
+            background: transparent;
+            border: 2px solid var(--neon-magenta);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--neon-magenta);
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .wallet-btn:hover {
+            background: var(--neon-magenta);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+        }
+
+        .wallet-btn.connected {
+            background: var(--neon-magenta);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -823,6 +855,8 @@
     <!-- GSAP 动画 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Ethers.js -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.umd.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
