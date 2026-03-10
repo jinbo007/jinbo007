@@ -131,6 +131,57 @@
             padding: 6rem 2rem 2rem;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        /* 3D 旋转立方体 */
+        .cube-container {
+            position: absolute;
+            right: 10%;
+            top: 30%;
+            perspective: 1000px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .cube {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 20s linear infinite;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+            backdrop-filter: blur(5px);
+        }
+
+        .cube-face.front { transform: translateZ(50px); }
+        .cube-face.back { transform: rotateY(180deg) translateZ(50px); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(50px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(50px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .greeting {
@@ -517,6 +568,18 @@
     <section class="hero">
         <p class="greeting">// Hello World</p>
         <h1>一个对 AI 和效率<br>有执念的人</h1>
+
+        <!-- 3D 旋转立方体 -->
+        <div class="floating-3d">
+            <div class="cube">
+                <div class="cube-face front">AI</div>
+                <div class="cube-face back">Web3</div>
+                <div class="cube-face right">Future</div>
+                <div class="cube-face left">Now</div>
+                <div class="cube-face top">🚀</div>
+                <div class="cube-face bottom">⚡</div>
+            </div>
+        </div>
         <p class="intro">
             不喜欢废话，喜欢直接问核心问题。关注工具的实用性和可扩展性。
             相信 AI 应该让生活更简单，而不是更复杂。
