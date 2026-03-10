@@ -18,6 +18,19 @@ private/
 # 临时文件
 *.tmp
 *.log
+
+# ⛔ 投资敏感信息 - 永远不要上传到公开仓库
+# 包含持仓、成本、资产余额的文件
+*-daily-summary.md
+*-investment-report.md
+tencent-analysis-round*.md
+alibaba-analysis-round*.md
+tasks/
+stock-analysis/
+openclaw-top10-scenarios.html
+ctrip-analysis-2026.md
+MEMORY.md
+memory/
 .DS_Store
 
 # Node modules
