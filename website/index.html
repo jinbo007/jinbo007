@@ -176,12 +176,73 @@
         }
 
         .tag {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
             padding: 0.5rem 1rem;
             border-radius: 6px;
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            background: var(--neon-cyan);
+            color: var(--bg);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 通用霓虹按钮 */
+        .neon-btn {
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .neon-btn:hover::before {
+            left: 100%;
+        }
+
+        .neon-btn:hover {
+            background: var(--neon-cyan);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .neon-btn.magenta {
+            border-color: var(--neon-magenta);
+            color: var(--neon-magenta);
+        }
+
+        .neon-btn.magenta:hover {
+            background: var(--neon-magenta);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);
         }
 
         /* Section */
