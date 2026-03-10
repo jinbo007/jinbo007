@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jason | Digital Identity</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             /* 霓虹色系 - Web3 × AI × 科技风 */
@@ -144,6 +144,21 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: neonGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes neonGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.8));
+            }
         }
 
         .intro {
@@ -188,6 +203,9 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
 
         /* Communication Style */
